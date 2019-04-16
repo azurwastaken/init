@@ -1,0 +1,6 @@
+#!/bin/sh
+apt-get update > /var/log/update_script.log 2>&1
+apt-get upgrade -f -y >> /var/log/update_script.log 2>&1
+# Executez ces commandes lors de la 1ere utilisation :
+# echo "0 4 * * 0 <path_du_fichier> >> /root/crontab
+# crontab -u root ~/crontab

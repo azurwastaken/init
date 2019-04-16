@@ -1,0 +1,5 @@
+#!/bin/sh
+IFS=' '
+dir="."
+[ ! -z "$1" ] && dir="$1"
+ls -S -ap "$dir" | grep -v /

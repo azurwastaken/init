@@ -1,0 +1,7 @@
+#!/bin/sh
+IFS=':'
+cat /etc/passwd | while read -r a; 
+do 
+	set $a
+	echo $1 - $3 - $6
+done

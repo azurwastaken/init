@@ -1,0 +1,17 @@
+#!/bin/sh
+filename="/etc/crontab"
+old_filestate="/tmp/crontab-state"
+new_filestate="/tmp/crontab-tmp"
+
+[ ! -f "$old_filestate" ] && md5sum "$filename" > "$old_filestate"
+[ -f "$new_filestate" ] && rm "$new_filestate"
+
+md5sum "$filename" > "$new_filestate"
+
+if [ ! -z "$(diff "$old_filestate" "$new_filestate")" ]
+then
+	mail -s "$file has been modified" root < /dev/null
+	mv "$new_filestate" "$old_filestate"
+else
+	rm "$new_filestate"
+fi
